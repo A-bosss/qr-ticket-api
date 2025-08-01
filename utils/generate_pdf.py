@@ -1,35 +1,55 @@
+# utils/generate_pdf.py
 
+import os
 import qrcode
 from fpdf import FPDF
-import uuid
-import os
-import sqlite3
 
-def generar_ticket(nombre, numero, ciudad, email):
-    ticket_id = str(uuid.uuid4())[:8]
-    qr_data = f"{ticket_id} - {nombre} - {numero}"
+def generar_ticket(nombre, cantidad, ciudad, email, ticket_id):
+    """
+    Genera un PDF con los datos del ticket y un código QR,
+    guardándolo en tickets/{ticket_id}.pdf
+    """
+    # 1) Asegúrate de que exista la carpeta 'tickets'
+    os.makedirs("tickets", exist_ok=True)
 
-    qr = qrcode.make(qr_data)
-    qr_path = f"tickets/{ticket_id}_qr.png"
+    # 2) Genera el QR como imagen
+    qr_text = (
+        f"Electric Wave - 2025\n"
+        f"Ticket ID: {ticket_id}\n"
+        f"Nombre: {nombre}\n"
+        f"Cantidad: {cantidad}\n"
+        f"Ciudad: {ciudad}"
+    )
+    qr = qrcode.make(qr_text)
+    qr_path = os.path.join("tickets", f"{ticket_id}_qr.png")
     qr.save(qr_path)
 
+    # 3) Prepara el PDF
     pdf = FPDF()
     pdf.add_page()
-    pdf.set_font("Arial", size=14)
-    pdf.cell(200, 10, txt="🎟️ Electric Wave 2025", ln=1, align="C")
-    pdf.cell(200, 10, txt=f"Nombre: {nombre}", ln=2)
-    pdf.cell(200, 10, txt=f"Número: {numero}", ln=3)
-    pdf.cell(200, 10, txt=f"Ciudad: {ciudad}", ln=4)
+    pdf.set_font("Arial", "B", 16)
+    pdf.cell(0, 10, "Electric Wave – 2025", ln=True, align="C")
+    pdf.ln(5)
+    pdf.set_font("Arial", size=12)
+    pdf.cell(0, 8, f"Ticket ID: {ticket_id}", ln=True)
+    pdf.cell(0, 8, f"Nombre: {nombre}", ln=True)
+    pdf.cell(0, 8, f"Cantidad: {cantidad}", ln=True)
+    pdf.cell(0, 8, f"Ciudad: {ciudad}", ln=True)
     if email:
-        pdf.cell(200, 10, txt=f"Email: {email}", ln=5)
-    pdf.image(qr_path, x=70, y=60, w=60)
+        pdf.cell(0, 8, f"Email: {email}", ln=True)
+    pdf.ln(10)
 
-    pdf_path = f"tickets/{ticket_id}_ticket.pdf"
+    # 4) Inserta la imagen del QR
+    page_width = pdf.w - 2 * pdf.l_margin
+    qr_size = 50
+    pdf.image(qr_path,
+              x=(page_width - qr_size) / 2 + pdf.l_margin,
+              w=qr_size)
+
+    # 5) Guarda el PDF final
+    pdf_path = os.path.join("tickets", f"{ticket_id}.pdf")
     pdf.output(pdf_path)
+
+    # 6) Elimina el PNG intermedio
     os.remove(qr_path)
 
-    with sqlite3.connect("tickets.db") as conn:
-        c = conn.cursor()
-        c.execute("INSERT INTO tickets (id, nombre, numero, ciudad, email) VALUES (?, ?, ?, ?, ?)",
-                  (ticket_id, nombre, numero, ciudad, email))
-        conn.commit()
