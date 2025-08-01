@@ -6,15 +6,13 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT
     envVars:
-      - key: DATA_DIR
-        value: /opt/render/project/src/data
+      - key: DATABASE_URL
+        value: postgres://usuario:contraseña@host.aws.neon.tech/db_name
       - key: EVENT_ID
         value: "EW2025"
       - key: EVENT_NAME
         value: "ELECTRIC WAVE - 2025"
       - key: EVENT_CAPACITY
         value: "1000"
-    disk:
-      name: data
-      mountPath: /opt/render/project/src/data
-      sizeGB: 1
+      - key: DATA_DIR
+        value: /tmp
