@@ -7,7 +7,7 @@ services:
     startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT
     envVars:
       - key: DATABASE_URL
-        value: postgres://usuario:contraseña@host.aws.neon.tech/db_name
+        value: postgresql://neondb_owner:npg_aCfFUGEe0Q7A@ep-sweet-surf-afvwo2ib-pooler.c-2.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require
       - key: EVENT_ID
         value: "EW2025"
       - key: EVENT_NAME
