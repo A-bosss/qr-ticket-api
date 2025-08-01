@@ -1,5 +1,4 @@
 flask
-fpdf
 qrcode
 gunicorn
 fpdf2
