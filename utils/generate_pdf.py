@@ -10,7 +10,6 @@ def generar_ticket(datos: dict) -> bytes:
     pdf.add_font('DejaVu', '',    os.path.join(font_dir, 'DejaVuSans.ttf'),      uni=True)
     pdf.add_font('DejaVu', 'B',   os.path.join(font_dir, 'DejaVuSans-Bold.ttf'), uni=True)
 
-    # Generación del PDF
     pdf.add_page()
     pdf.set_font('DejaVu', 'B', 16)
     pdf.cell(0, 10, "Electric Wave – 2025", ln=True, align="C")
