@@ -1,10 +1,10 @@
 services:
   - type: web
     name: qr-ticket-api
-    env: python
+    runtime: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT
+    startCommand: gunicorn app:app
     envVars:
       - key: DATABASE_URL
         value: postgresql://neondb_owner:npg_aCfFUGEe0Q7A@ep-sweet-surf-afvwo2ib-pooler.c-2.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require
@@ -16,3 +16,5 @@ services:
         value: "1000"
       - key: DATA_DIR
         value: /tmp
+      - key: PYTHON_VERSION
+        value: 3.11
