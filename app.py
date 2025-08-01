@@ -1,11 +1,9 @@
-
 from flask import Flask, render_template, request, redirect
 import os
 from utils.generate_pdf import generar_ticket
 from db import init_db, descontar_boleto
 
 app = Flask(__name__)
-from flask import render_template
 init_db()
 
 @app.route("/", methods=["GET", "POST"])
@@ -20,10 +18,13 @@ def index():
         return redirect("/")
     return render_template("form.html")
 
-
 @app.route('/home')
 def home():
     return render_template('home.html')
+
+# Esta parte es opcional si SOLO vas a correr en Render (con gunicorn)
+# Si quieres que funcione también localmente, puedes dejarlo así:
 if __name__ == "__main__":
     os.makedirs("tickets", exist_ok=True)
-    app.run(debug=True)
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
