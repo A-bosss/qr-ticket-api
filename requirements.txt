@@ -2,3 +2,5 @@ flask
 fpdf
 qrcode
 gunicorn
+fpdf2
+qrcode[pil]
