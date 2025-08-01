@@ -1,5 +1,4 @@
-flask
-qrcode
-gunicorn
-fpdf2
-qrcode[pil]
+Flask==2.3.2
+fpdf2==2.6.1
+qrcode[pil]==7.4.0
+gunicorn==20.1.0
