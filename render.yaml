@@ -2,8 +2,10 @@ services:
   - type: web
     name: qr-ticket-api
     env: python
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT
+
     envVars:
       - key: DATA_DIR
         value: /opt/render/project/src/data
@@ -12,10 +14,9 @@ services:
       - key: EVENT_NAME
         value: ELECTRIC WAVE - 2025
       - key: EVENT_CAPACITY
-        value: 1000
-    disk:
-      name: data
+        value: "1000"
+
+    # ✅ Disco persistente usando sintaxis soportada
+    persistentDisk:
       mountPath: /opt/render/project/src/data
-disks:
-  - name: data
-    sizeGB: 1
+      sizeGB: 1
