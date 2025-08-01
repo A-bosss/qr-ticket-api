@@ -1,34 +1,142 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Electric Wave 2025 - Tickets</title>
-  <style>
-    /* Tu CSS rave aquí */
-  </style>
+    <meta charset="UTF-8">
+    <title>Electric Wave 2025 - Tickets</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+        }
+
+        header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(to right, #6f00ff, #ff00cc);
+            color: white;
+            text-shadow: 0 0 5px #000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 40px;
+        }
+
+        nav {
+            background: #111;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Solo texto, sin enlaces */
+        nav span {
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(to right, #6f00ff, #ff00cc);
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            text-shadow: 0 0 5px #000;
+            border-radius: 4px;
+        }
+
+        /* Modal styles */
+        #ticketModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        #ticketModal .modal-content {
+            background: #111;
+            padding: 20px;
+            max-width: 600px;
+            width: 90%;
+            border-radius: 4px;
+            box-shadow: 0 0 20px #6f00ff;
+            position: relative;
+        }
+        #ticketModal .close-btn {
+            position: absolute;
+            top: 10px; right: 10px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+
+        footer {
+            background: #111;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Electric Wave 2025</h1>
-    <p>¡Compra tu entrada oficial al evento rave del año!</p>
-  </header>
+    <header>
+        <h1>Electric Wave 2025</h1>
+        <p>¡Compra tu entrada oficial al evento rave del año!</p>
+    </header>
 
-  <!-- NAV actualizada -->
-  <nav>
-    <span style="color:#fff; font-size:18px; font-weight:bold;">
-      Comprar Ticket
-    </span>
-  </nav>
+    <nav>
+        <span>Comprar Ticket</span>
+    </nav>
 
-  <section>
-    <h2>Formulario de compra</h2>
-    <p>Rellena tus datos y recibe tu entrada con código QR</p>
-    <iframe src="/form"
-            title="Formulario de Tickets"
-            style="width:100%; height:600px; border:none;">
-    </iframe>
-  </section>
+    <section>
+        <h2>Formulario de compra</h2>
+        <p>Rellena tus datos y recibe tu entrada con código QR</p>
+        <button class="btn" id="buyTicketBtn">Comprar Ticket</button>
+    </section>
 
-  <footer>…</footer>
+    <!-- Modal -->
+    <div id="ticketModal">
+      <div class="modal-content">
+        <button class="close-btn" id="closeModal">✕</button>
+        <iframe src="https://qr-ticket-api.onrender.com/form" title="Formulario Tickets"></iframe>
+      </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Electric Wave. Todos los derechos reservados.
+    </footer>
+
+    <script>
+      document.getElementById('buyTicketBtn').onclick = () => {
+        document.getElementById('ticketModal').style.display = 'flex';
+      };
+      document.getElementById('closeModal').onclick = () => {
+        document.getElementById('ticketModal').style.display = 'none';
+      };
+    </script>
 </body>
 </html>
