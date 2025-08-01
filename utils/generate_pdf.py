@@ -42,9 +42,11 @@ def generar_ticket(nombre, cantidad, ciudad, email, ticket_id):
     # 4) Inserta la imagen del QR
     page_width = pdf.w - 2 * pdf.l_margin
     qr_size = 50
-    pdf.image(qr_path,
-              x=(page_width - qr_size) / 2 + pdf.l_margin,
-              w=qr_size)
+    pdf.image(
+        qr_path,
+        x=(page_width - qr_size) / 2 + pdf.l_margin,
+        w=qr_size
+    )
 
     # 5) Guarda el PDF final
     pdf_path = os.path.join("tickets", f"{ticket_id}.pdf")
@@ -52,4 +54,3 @@ def generar_ticket(nombre, cantidad, ciudad, email, ticket_id):
 
     # 6) Elimina el PNG intermedio
     os.remove(qr_path)
-
