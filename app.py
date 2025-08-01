@@ -3,9 +3,6 @@ from utils.generate_pdf import generar_ticket
 
 app = Flask(__name__)
 
-# Ruta principal con la temática RAID
-default_page = 'RAID Ticket System'
-
 @app.route('/', methods=['GET'])
 def home():
     return render_template('home.html')
@@ -14,7 +11,6 @@ def home():
 def form():
     return render_template('form.html')
 
-# Endpoint para generar el PDF del ticket
 @app.route('/tickets', methods=['POST'])
 def crear_ticket():
     datos = request.get_json() or request.form.to_dict()
@@ -32,4 +28,4 @@ def crear_ticket():
     return response
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
