@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro - Electric Wave 2025</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%);
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background: rgba(0, 0, 0, 0.75);
+      border: 2px solid #6f00ff;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 0 30px #6f00ff;
+      max-width: 500px;
+      width: 90%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px #6f00ff; }
+      50% { box-shadow: 0 0 20px #e100ff, 0 0 40px #ff005c; }
+      100% { box-shadow: 0 0 10px #6f00ff; }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+      color: #ff00cc;
+      text-shadow: 0 0 10px #ff00cc;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #e0e0e0;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 10px;
+      background: #1c1c1c;
+      color: #fff;
+      font-size: 16px;
+      box-shadow: 0 0 5px #6f00ff inset;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 10px #ff00cc inset;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(45deg, #ff00cc, #6f00ff);
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    input[type="submit"]:hover {
+      background: linear-gradient(45deg, #e100ff, #ff005c);
+      box-shadow: 0 0 15px #ff00cc;
+    }
+
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 25px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Electric Wave 2025</h2>
+    <form method="post">
+      <label for="nombre">Nombre completo:</label>
+      <input type="text" name="nombre" id="nombre" required>
+
+      <label for="numero">Número de WhatsApp:</label>
+      <input type="text" name="numero" id="numero" required>
+
+      <label for="ciudad">Ciudad:</label>
+      <input type="text" name="ciudad" id="ciudad" required>
+
+      <label for="email">Correo electrónico (opcional):</label>
+      <input type="email" name="email" id="email">
+
+      <input type="submit" value="GENERAR TICKET 🎟️">
+    </form>
+  </div>
+</body>
+</html>
