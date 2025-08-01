@@ -5,18 +5,15 @@ services:
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT
-
     envVars:
       - key: DATA_DIR
         value: /opt/render/project/src/data
       - key: EVENT_ID
-        value: EW2025
+        value: "EW2025"
       - key: EVENT_NAME
-        value: ELECTRIC WAVE - 2025
+        value: "ELECTRIC WAVE - 2025"
       - key: EVENT_CAPACITY
         value: "1000"
-
-    # ✅ Disco persistente usando sintaxis soportada
     persistentDisk:
       mountPath: /opt/render/project/src/data
       sizeGB: 1
