@@ -3,14 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>Generar Ticket - Electric Wave</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h1>Generar Ticket</h1>
-  <form action="/tickets" method="post">
-    <label for="descripcion">Descripción:</label>
-    <input type="text" id="descripcion" name="descripcion" required>
-    <button type="submit">Generar PDF</button>
-  </form>
+  <header>
+    <h1>Generar Ticket</h1>
+  </header>
+  <section>
+    <form action="/tickets" method="post">
+      <label for="descripcion">Descripción:</label><br>
+      <input
+        type="text" id="descripcion" name="descripcion"
+        placeholder="Tu nombre o detalle" required
+        style="padding:8px; width:80%; margin:10px 0;"
+      ><br>
+      <button class="btn" type="submit">Generar PDF</button>
+    </form>
+  </section>
 </body>
 </html>
+
 
